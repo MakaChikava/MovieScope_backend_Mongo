@@ -10,6 +10,10 @@ app.use(cors());
 const makaURI = process.env.MONGODB
 // ROUTES
 
+app.get('/', (req, res)=>{
+    res.redirect('/movies')
+})
+
 // GET
 
 app.get('/movies', async (req, res)=>{
@@ -22,9 +26,9 @@ app.get('/movies', async (req, res)=>{
 })
 
 // SHOW ONE
-app.get('/movie:id', async (req, res)=>{
+app.get('/movie/:id', async (req, res)=>{
     try {
-        const oneMovie = await movie.find({}, req.params.id);
+        const oneMovie = await movie.findById(req.params.id);
         res.json(oneMovie)
     } catch (err) {
         console.log(err.message)
@@ -34,7 +38,7 @@ app.get('/movie:id', async (req, res)=>{
 app.post('/movie', async (req, res)=>{
     try {
         const newMovie = await movie.create(req.body)
-        res.json(newMovie.rows)
+        res.json(newMovie)
     } catch (err) {
         console.log(err.message)
     }
@@ -42,7 +46,7 @@ app.post('/movie', async (req, res)=>{
 // DELETE
 app.delete('/movie/:id', async (req, res)=>{
     try {
-        const deleteMovie = await movie.findByIdandDelete(req.params.id)
+        const deleteMovie = await movie.findByIdAndRemove(req.params.id)
         res.json(deleteMovie)
         res.redirect('/movies')
     } catch (err) {
@@ -53,7 +57,7 @@ app.delete('/movie/:id', async (req, res)=>{
 
 app.put('/movie/:id', async (req, res)=>{
     try {
-        const updateMovie = await movie.findByIdandUpdate(req.params.id, req.body, {new:true});
+        const updateMovie = await movie.findByIdAndUpdate(req.params.id, req.body, {new:true});
         res.json(updateMovie)
         res.redirect('/movies')
     } catch (err) {
