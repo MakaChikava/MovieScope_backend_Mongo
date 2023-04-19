@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors');
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin:'http://localhost:8000', 
     credentials:false,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
