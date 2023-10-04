@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 var cors = require('cors');
 const corsOptions ={
-    origin:'https://moviescope-frontend-3zkq8b3gv-makachikava.vercel.app/', //https://moviescope-frontend-dz6md15ma-makachikava.vercel.app/ , https://moviescope-frontend.onrender.com
+    origin:'https://moviescope-frontend-3zkq8b3gv-makachikava.vercel.app', //https://moviescope-frontend-dz6md15ma-makachikava.vercel.app/ , https://moviescope-frontend.onrender.com
     credentials:false,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
